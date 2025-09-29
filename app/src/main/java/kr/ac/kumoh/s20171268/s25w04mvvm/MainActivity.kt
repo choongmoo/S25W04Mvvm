@@ -34,10 +34,11 @@ fun MainScreen(
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Counter(
             modifier = Modifier.padding(innerPadding),
-            count = counterState.count
-        ) {
-            viewModel.setCounter(it)
-        }
+            count = counterState.count,
+            onAdd = { viewModel.addCounter() },
+            onSub = { viewModel.subCounter() },
+            onReset = { viewModel.resetCounter() },
+        )
     }
 }
 

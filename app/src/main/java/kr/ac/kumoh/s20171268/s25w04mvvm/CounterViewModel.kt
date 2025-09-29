@@ -7,7 +7,19 @@ class CounterViewModel : ViewModel() {
     private val _counterState = mutableStateOf(CounterModel(0))
     val counterState: State<CounterModel> = _counterState
 
-    fun setCounter(newValue: Int) {
-        _counterState.value = CounterModel(newValue)
+    //fun setCounter(newValue: Int) {
+    //    _counterState.value = CounterModel(newValue)
+    //}
+
+    fun addCounter() {
+        _counterState.value = CounterModel(_counterState.value.count + 1)
+    }
+
+    fun subCounter() {
+        _counterState.value = CounterModel(_counterState.value.count - 1)
+    }
+
+    fun resetCounter() {
+        _counterState.value = CounterModel(0)
     }
 }

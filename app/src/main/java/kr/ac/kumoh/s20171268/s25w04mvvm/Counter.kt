@@ -23,9 +23,13 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun Counter(
-    modifier: Modifier = Modifier,
+//    modifier: Modifier = Modifier, // 맨 마지막 parameter로 이동
     count: Int,
-    onChangeCount: (Int) -> Unit,
+//    onChangeCount: (Int) -> Unit,
+    onAdd: () -> Unit,
+    onSub: () -> Unit,
+    onReset: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     var expanded by rememberSaveable { mutableStateOf(false)}
 
@@ -51,9 +55,7 @@ fun Counter(
         Row {
             Button(
                 modifier = Modifier.weight(1f),
-                onClick = {
-                    onChangeCount(count + 1)
-                }
+                onClick = onAdd
             ) {
                 Text("+", fontSize = 30.sp)
             }
@@ -61,7 +63,7 @@ fun Counter(
             if (expanded) {
                 Button(
                     onClick = {
-                        onChangeCount(count - 1)
+                        onSub()
                         expanded = false
                     }
                 ) {
@@ -70,7 +72,7 @@ fun Counter(
 
                 Button(
                     onClick = {
-                        onChangeCount(0)
+                        onReset()
                         expanded = false
                     }
                 ) {
